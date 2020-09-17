@@ -1,0 +1,28 @@
+.MainPage-wrapper {
+  align-items: flex-start;
+}
+
+.MainPage {
+  width: 1180px;
+  height: auto;
+}
+
+.Welcome {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: justify;
+
+  h2 {
+    text-align: center;
+    font-weight: normal;
+  }
+
+  p {
+    margin-top: 20px;
+
+    span {
+      font-weight: bold;
+    }
+  }
+}

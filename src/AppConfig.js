@@ -1,0 +1,107 @@
+export const AppConfig = {
+    notifications: {
+        userNotExist: {
+            title: "Ошибка авторизации",
+            message: "Указанного пользователя не существует",
+            type: "danger",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animated", "fadeIn"],
+            dismiss: {
+                duration: 2500,
+                onScreen: true,
+                pauseOnHover: true,
+            },
+        },
+        wrongPassword: {
+            title: "Ошибка авторизации",
+            message: "Неверный пароль",
+            type: "danger",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animated", "fadeIn"],
+            dismiss: {
+                duration: 2500,
+                onScreen: true,
+                pauseOnHover: true,
+            },
+        },
+        userAlreadyExist: {
+            title: "Ошибка регистрации",
+            message: "Пользователь с указанным логином уже зарегистрирован",
+            type: "danger",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animated", "fadeIn"],
+            dismiss: {
+                duration: 2500,
+                onScreen: true,
+                pauseOnHover: true,
+            },
+        },
+        successfullyRegister: {
+            message: "Ваша учетная запись успешно зарегистрирована",
+            type: "success",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animated", "fadeIn"],
+            dismiss: {
+                duration: 2500,
+                onScreen: true,
+                pauseOnHover: true,
+            },
+        },
+        productSuccessfullyUpdate: {
+            title: "Отлично!",
+            message: "Товар успешно изменен",
+            type: "success",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animated", "fadeIn"],
+            dismiss: {
+                duration: 2500,
+                onScreen: true,
+                pauseOnHover: true,
+            },
+        },
+        productSuccessfullyAdded: {
+            title: "Отлично!",
+            message: "Товар успешно добавлен",
+            type: "success",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animated", "fadeIn"],
+            dismiss: {
+                duration: 2500,
+                onScreen: true,
+                pauseOnHover: true,
+            },
+        },
+        propertyAlreadyExist: {
+            title: "Ошибка!",
+            message: "Вы не можете добавить существующее свойтво",
+            type: "danger",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animated", "fadeIn"],
+            dismiss: {
+                duration: 2500,
+                onScreen: true,
+                pauseOnHover: true,
+            },
+        },
+        propertySuccessfullyAdded: {
+            title: "Отлично!",
+            message: "Свойство успешно добавлено",
+            type: "success",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animated", "fadeIn"],
+            dismiss: {
+                duration: 2500,
+                onScreen: true,
+                pauseOnHover: true,
+            },
+        },
+    }
+};

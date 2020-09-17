@@ -1,0 +1,96 @@
+.Header {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  &__home {
+    margin-left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 300ms;
+
+    i {
+      color: $color-orange;
+      text-shadow: $main-shadow;
+      font-size: 40px;
+      transition: 300ms;
+      &:hover {
+        text-shadow: $main-shadow-hover;
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-grow: 1;
+    margin-left: 30px;
+
+    &__button {
+      padding: 10px 20px 10px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      margin-right: 30px;
+      transition: 300ms;
+      border-radius: 20px;
+
+      i {
+        transition: 300ms;
+        font-size: 25px;
+        color: $color-orange;
+        text-shadow: $main-shadow;
+        margin-right: 15px;
+      }
+
+      &:hover {
+        text-shadow: $main-shadow-text;
+        i {
+          text-shadow: $main-shadow-hover;
+        }
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__auth {
+
+    &__user {
+      display: inline-flex;
+      margin-right: 15px;
+    }
+
+    &__button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto 0;
+      text-decoration: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .Header__auth__user {
+    display: none;
+  }
+}
+
+@media (max-width: 470px) {
+  .Header {
+    &__buttons__button {
+      width: 100px;
+      text-align: center;
+    }
+    &__auth__button {
+      width: 130px;
+    }
+  }
+}

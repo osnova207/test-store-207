@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  &:focus {
+    outline: none;
+  }
+}
+
+.App {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
+  background: url("./img/main-background.png") no-repeat center;
+  background-size: cover;
+}
+
+.App_content {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.page-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page {
+  position: relative;
+  box-shadow: $main-shadow;
+  border-radius: $main-border-radius;
+  padding:$main-padding;
+  background: $main-background;
+  margin-bottom: 50px;
+}
+
+th {
+  .material-icons {
+    font-size: 16px;
+    position: absolute;
+    left: -20px;
+  }
+}
+
+@keyframes swing {
+  15% {
+    -webkit-transform: translateX(9px);
+    transform: translateX(9px);
+  }
+  30% {
+    -webkit-transform: translateX(-9px);
+    transform: translateX(-9px);
+  }
+  40% {
+    -webkit-transform: translateX(6px);
+    transform: translateX(6px);
+  }
+  50% {
+    -webkit-transform: translateX(-6px);
+    transform: translateX(-6px);
+  }
+  65% {
+    -webkit-transform: translateX(3px);
+    transform: translateX(3px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,79 @@
+// Main theme
+$color-red: #FF0000;
+$color-orange: #FFA707;
+$main-background: rgba(27, 43, 53, .7);
+$main-shadow: 0 0 10px black;
+$main-shadow-hover: 0 0 30px black;
+$main-shadow-text: 0 0 10px #FFFFFF;
+$main-border-radius: 10px;
+$main-padding: 20px;
+$text-shadow: 0 0 5px;
+
+input, textarea {
+  color: #000000;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+select, option {
+  color: #000000;
+}
+
+.button, .button-sm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 180px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 3px;
+  background-color: $color-orange;
+  font-size: 16px;
+  text-decoration: none;
+  transition: 300ms;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: $main-shadow-hover;
+    text-shadow: $text-shadow;
+  }
+
+  &:disabled {
+    cursor: auto;
+    box-shadow: none;
+    opacity: 0.8;
+    background-color: gray;
+
+    &:hover {
+      box-shadow: none;
+      text-shadow: none;
+    }
+  }
+}
+
+.button-sm {
+  display: inline-flex;
+  height: 20px;
+  width: 120px;
+  font-size: 10px;
+}
+
+.error-hint {
+  font-size: 12px;
+  color: $color-red;
+  position: absolute;
+}
+
+input.error-input, textarea.error-input, select.error-input {
+  border: 1.3px solid $color-red;
+  //box-shadow: 0 0 3px inset $color-red;
+  -webkit-animation: swing 0.6s ease;
+  animation: swing 0.6s ease;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
+
+.required:after {
+  content: ' *';
+  color: $color-red;
+}
+
