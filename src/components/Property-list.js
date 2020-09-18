@@ -1,29 +1,45 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
-import * as propertiesActions from "../actions/properties";
-import * as cn from "classnames";
+import React, {useEffect, useState} from "react";
+import * as firebase from "firebase";
+import AddProperty from "./Add-property";
+import {showNotification} from "../utils/utils";
+import {AppConfig} from "../AppConfig";
 
-const PropertyList = ({ properties, dispatch }) => {
+const PropertyList = () => {
 
-    const [activeSort, setActiveSort] = useState('');
+    const [properties, setProperties] = useState([]);
+    const [showAddPropertyModal, setShowAddPropertyModal] = useState(false);
+    const database = firebase.database().ref('/properties');
 
-    const setSort = (type) => {
-        setActiveSort(type);
-        switch (type) {
-            case 'name_up':
-                return dispatch(propertiesActions.toSortPropertiesByName(true));
-            case 'name_down':
-                return dispatch(propertiesActions.toSortPropertiesByName(false));
-            case 'type_up':
-                return dispatch(propertiesActions.toSortPropertiesByType(true));
-            case 'type_down':
-                return dispatch(propertiesActions.toSortPropertiesByType(false));
-            default:
-                return null;
+    const toggleAddPropertyModal = () => setShowAddPropertyModal(!showAddPropertyModal);
+
+    useEffect(() => {
+        database.on('value', ((snapshot) => {
+            const data = snapshot.val() ? Object.values(snapshot.val()) : [];
+            if (data.length !== properties.length) setProperties(data);
+        }));
+        return () => {
+            database.off();
+        }
+    });
+
+    const addNewProperty = (values) => {
+        const checkProperty = properties.find((property) => property.name.toLowerCase() === values.name.toLowerCase());
+        if (checkProperty) {
+            showNotification(AppConfig.notifications.propertyAlreadyExist);
+        } else {
+            values.id = (properties.length) ? (properties.reduce((acc, cur) => acc.id > cur.id ? acc : cur).id + 1) : 1;
+            firebase.database().ref(`/properties/property${values.id}`).set({...values})
+                .then(() => {
+                    showNotification(AppConfig.notifications.propertySuccessfullyAdded);
+                    toggleAddPropertyModal();
+                });
         }
     };
 
+    const deleteProperty = (id) => {
+        firebase.database().ref(`/properties/property${id}`).remove()
+            .then(() => showNotification(AppConfig.notifications.propertySuccessfullyDeleted));
+    };
 
     const propertiesList = properties.map((property) => {
         const {id, name, type} = property;
@@ -32,9 +48,8 @@ const PropertyList = ({ properties, dispatch }) => {
                 <td>{name}</td>
                 <td>{type}</td>
                 <td>
-                    <button
-                        className='PropertyList__table__button button button-sm'
-                        onClick={() => dispatch(propertiesActions.toDeleteProperty(id))}>Удалить
+                    <button className='PropertyList__table__button button button-sm' onClick={() => deleteProperty(property.id)}>
+                        Удалить
                     </button>
                 </td>
             </tr>
@@ -43,45 +58,30 @@ const PropertyList = ({ properties, dispatch }) => {
 
     return (
         <div className='PropertyList'>
-            <Link to='/add-property' className='PropertyList__add-button button'>Добавить проперти</Link>
+            <div className='PropertyList__add-button button' onClick={toggleAddPropertyModal}>Добавить проперти</div>
             <div className='PropertyList__table-wrapper'>
                 <table className="PropertyList__table">
                     <thead>
-                    <tr>
-                        <th onClick={() => setSort(activeSort === "name_up" ? "name_down" : "name_up")}>
-                            {activeSort === "name_up" && <i className="material-icons">vertical_align_top</i> }
-                            {activeSort === "name_down" && <i className="material-icons">vertical_align_bottom</i> }
-                            Перечень проперти
-                        </th>
-                        <th onClick={() => setSort(activeSort === "type_up" ? "type_down" : "type_up")}>
-                            {activeSort === "type_up" && <i className="material-icons">vertical_align_top</i> }
-                            {activeSort === "type_down" && <i className="material-icons">vertical_align_bottom</i> }
-                            Тип
-                        </th>
-                        <th>Управление</th>
-                    </tr>
+                        <tr>
+                            <th>Перечень проперти</th>
+                            <th>Тип</th>
+                            <th>Управление</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {propertiesList}
+                        {propertiesList}
                     </tbody>
                 </table>
             </div>
+            <AddProperty
+                show={showAddPropertyModal}
+                onClose={toggleAddPropertyModal}
+                properties={properties}
+                onSave={addNewProperty}
+            />
         </div>
     )
 };
 
-const mapStateToProps = (state) => {
-    const { properties } = state;
-    return {
-        properties
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        dispatch
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PropertyList);
+export default PropertyList;
 

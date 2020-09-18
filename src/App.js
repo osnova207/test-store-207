@@ -25,7 +25,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => this.setState({loading: false}), 2000);
+        setTimeout(() => this.setState({loading: false}), 20);
     }
 
     render() {
@@ -33,30 +33,27 @@ class App extends Component {
         const { isLogged } = this.props;
         return (
             <div className="App">
-                <div className="App_content">
-                    <ReactNotification />
-                    {loading &&  <Preloader />}
-                    {!loading &&
-                        <Router>
-                            {
-                                // isLogged
-                             <Header />}
-                            <Switch>
-                                <Route path="/" component={MainPage} exact/>
-                                {!isLogged && <Route path="/login" component={LoginPage} exact/>}
-                                <Route path="/registration" component={RegisterPage}/>
-                                <Route path="/products-list/" component={ProductsList} exact/>
-                                <Route path="/products-list/:id"
-                                       render={({ match }) => <ProductCard id={match.params.id}/>}/>
-                                <Route path="/add-product" component={AddProduct} exact/>
-                                <Route path="/change-product/:id" exact
-                                       render={({match}) => <AddProduct id={match.params.id}/>}/>
-                                <Route path="/properties-list/" component={PropertyList} exact/>
-                                <Route path="/add-property" component={AddProperty} exact/>
-                                <Route render={() => <h1>Page not found...</h1>}/>
-                            </Switch>
-                    </Router>}
-                </div>
+                <ReactNotification />
+                {loading &&  <Preloader />}
+                {!loading &&
+                <Router>
+                    {
+                        // isLogged
+                        <Header />}
+                    <Switch>
+                        <Route path="/" component={MainPage} exact/>
+                        {!isLogged && <Route path="/login" component={LoginPage} exact/>}
+                        <Route path="/registration" component={RegisterPage}/>
+                        <Route path="/products-list/" component={ProductsList} exact/>
+                        <Route path="/products-list/:id"
+                               render={({ match }) => <ProductCard id={match.params.id}/>}/>
+                        <Route path="/add-product" component={AddProduct} exact/>
+                        <Route path="/change-product/:id" exact
+                               render={({match}) => <AddProduct id={match.params.id}/>}/>
+                        <Route path="/properties-list/" component={PropertyList} exact/>
+                        <Route render={() => <h1>Page not found...</h1>}/>
+                    </Switch>
+                </Router>}
             </div>
         )
     }
