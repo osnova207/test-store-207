@@ -103,5 +103,18 @@ export const AppConfig = {
                 pauseOnHover: true,
             },
         },
+        propertySuccessfullyDeleted: {
+            title: "Отлично!",
+            message: "Свойство успешно удалено",
+            type: "success",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animated", "fadeIn"],
+            dismiss: {
+                duration: 2500,
+                onScreen: true,
+                pauseOnHover: true,
+            },
+        },
     }
 };
