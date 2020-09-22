@@ -37,10 +37,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none;
       margin-right: 30px;
       transition: 300ms;
       border-radius: 20px;
+      color: #ffffff;
 
       i {
         transition: 300ms;
@@ -52,11 +52,20 @@
 
       &:hover {
         text-shadow: $main-shadow-text;
+        color: #ffffff;
+        text-decoration: none;
         i {
           text-shadow: $main-shadow-hover;
         }
         cursor: pointer;
       }
+    }
+  }
+
+  .active {
+    text-shadow: $main-shadow-text;
+    i {
+      text-shadow: $main-shadow-hover;
     }
   }
 
@@ -73,24 +82,6 @@
       align-items: center;
       margin: auto 0;
       text-decoration: none;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .Header__auth__user {
-    display: none;
-  }
-}
-
-@media (max-width: 470px) {
-  .Header {
-    &__buttons__button {
-      width: 100px;
-      text-align: center;
-    }
-    &__auth__button {
-      width: 130px;
     }
   }
 }

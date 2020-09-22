@@ -2,16 +2,19 @@
 $color-red: #FF0000;
 $color-orange: #FFA707;
 $main-background: rgba(27, 43, 53, .7);
+$main-background-modal: rgb(27, 43, 53);
 $main-shadow: 0 0 10px black;
 $main-shadow-hover: 0 0 30px black;
 $main-shadow-text: 0 0 10px #FFFFFF;
 $main-border-radius: 10px;
-$main-padding: 20px;
+$main-padding: 20px 20px 50px;
 $text-shadow: 0 0 5px;
 
 input, textarea {
   color: #000000;
   border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 7px;
+  font-size: 14px;
 }
 
 select, option {
@@ -26,15 +29,17 @@ select, option {
   width: 180px;
   border: 1px solid rgba(0, 0, 0, .2);
   border-radius: 3px;
+  color: #ffffff;
   background-color: $color-orange;
   font-size: 16px;
-  text-decoration: none;
   transition: 300ms;
 
   &:hover {
     cursor: pointer;
     box-shadow: $main-shadow-hover;
     text-shadow: $text-shadow;
+    text-decoration: none;
+    color: #ffffff;
   }
 
   &:disabled {
@@ -65,7 +70,6 @@ select, option {
 
 input.error-input, textarea.error-input, select.error-input {
   border: 1.3px solid $color-red;
-  //box-shadow: 0 0 3px inset $color-red;
   -webkit-animation: swing 0.6s ease;
   animation: swing 0.6s ease;
   -webkit-animation-iteration-count: 1;
@@ -76,4 +80,3 @@ input.error-input, textarea.error-input, select.error-input {
   content: ' *';
   color: $color-red;
 }
-
