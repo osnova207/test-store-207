@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import App from './App';
 import {Provider} from 'react-redux';
 import {createStore} from "redux";
-import reducer from "./reducers/index";
+import reducer from "./reducers/reducer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../src/assets/styles.scss';
 import * as firebase from 'firebase';
