@@ -1,69 +1,76 @@
-import React, {Component} from "react";
+import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import ProductsList from "./components/Products-list";
-import PropertyList from "./components/Property-list";
-import AddProduct from "./components/Add-product";
 import ProductCard from "./components/Product-card";
-import AddProperty from "./components/Add-property";
-import AuthRoute from "./components/Auth-route";
 import MainPage from "./pages/MainPage";
-import LoginPage from "./pages/LoginPage";
-import ReactNotification from "react-notifications-component";
-import 'react-notifications-component/dist/theme.css';
-import RegisterPage from "./pages/RegistrationPage";
-import Preloader from "./components/Preloader";
 import Header from "./components/Header";
 import {connect} from "react-redux";
+import Database from "./database/Database";
+import * as actions from "./actions/actions";
+import ProductsContainer from "./components/containers/Products-container";
+import PropertiesContainer from "./components/containers/Properties-container";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import LoginContainer from "./components/containers/Login-container";
+import * as firebase from "firebase";
+import RegistrationContainer from "./components/containers/Registration-container";
 
-class App extends Component {
+const App = ({ dispatch }) => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true,
-        };
-    }
+    const database = new Database();
 
-    componentDidMount() {
-        setTimeout(() => this.setState({loading: false}), 20);
-    }
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) dispatch(actions.setLogIn(user.email));
+    });
 
-    render() {
-        const { loading } = this.state;
-        const { isLogged } = this.props;
-        return (
-            <div className="App">
-                <ReactNotification />
-                {loading &&  <Preloader />}
-                {!loading &&
+    database.products.on('value', (snapshot => {
+        dispatch(actions.updateProducts(snapshot.val()));
+    }));
+
+    database.properties.on('value', (snapshot => {
+        dispatch(actions.updateProperties(snapshot.val()));
+    }));
+
+    return (
+        <div className="App">
+            <div className="App__content">
+                <ToastContainer
+                    position="top-right"
+                    autoClose={2000}
+                    hideProgressBar
+                    newestOnTop
+                    closeOnClick
+                    draggable
+                    pauseOnHover
+                />
                 <Router>
-                    {
-                        // isLogged
-                        <Header />}
+                    <Header/>
                     <Switch>
                         <Route path="/" component={MainPage} exact/>
-                        {!isLogged && <Route path="/login" component={LoginPage} exact/>}
-                        <Route path="/registration" component={RegisterPage}/>
-                        <Route path="/products-list/" component={ProductsList} exact/>
+                        <Route path="/login" component={LoginContainer} exact/>
+                        <Route path="/registration" component={RegistrationContainer}/>
+                        <Route path="/products-list/" component={ProductsContainer} exact/>
                         <Route path="/products-list/:id"
-                               render={({ match }) => <ProductCard id={match.params.id}/>}/>
-                        <Route path="/add-product" component={AddProduct} exact/>
-                        <Route path="/change-product/:id" exact
-                               render={({match}) => <AddProduct id={match.params.id}/>}/>
-                        <Route path="/properties-list/" component={PropertyList} exact/>
+                               render={({match}) => <ProductCard id={match.params.id}/>}/>
+                        <Route path="/properties-list/" component={PropertiesContainer} exact/>
                         <Route render={() => <h1>Page not found...</h1>}/>
                     </Switch>
-                </Router>}
+                </Router>
             </div>
-        )
-    }
-}
+        </div>
+    )
+};
 
 const mapStateToProps = (state) => {
-    const { isLogged } = state.users;
+
     return {
-        isLogged,
+
     }
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
