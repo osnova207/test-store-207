@@ -42,9 +42,9 @@ const ProductsContainer = ({ products, listPerPage, properties, productsPage, pr
         return Math.ceil(products.length / productsPerPage);
     };
 
-    const changePage = (id) => {
-        dispatch(actions.setProductsPage(id))
-    };
+    const changePage = (id) => dispatch(actions.setProductsPage(id));
+
+    const changePerPageCount = (value) => dispatch(actions.setProductsPerPage(value));
 
     return (
         <div className="Products">
@@ -56,8 +56,10 @@ const ProductsContainer = ({ products, listPerPage, properties, productsPage, pr
             />
             <Pagination
                 pageCount={getPageCount()}
+                perPage={productsPerPage}
                 currentPage={productsPage}
                 onChangePage={changePage}
+                onChangePerPage={changePerPageCount}
             />
             <AddProduct
                 show={showAddProductModal}

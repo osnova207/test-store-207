@@ -4,9 +4,9 @@ const initialState = {
     products: [],
     properties: [],
     productsPage: 1,
-    productsPerPage: 3,
+    productsPerPage: 10,
     propertiesPage: 1,
-    propertiesPerPage: 2,
+    propertiesPerPage: 10,
 };
 
 const reducer = (state = initialState, action) => {
@@ -32,6 +32,12 @@ const reducer = (state = initialState, action) => {
 
         case "SET_PROPERTIES_PAGE":
             return {...state, propertiesPage: action.payload };
+
+        case "SET_PRODUCTS_PER_PAGE":
+            return {...state, productsPerPage: action.payload };
+
+        case "SET_PROPERTIES_PER_PAGE":
+            return {...state, propertiesPerPage: action.payload };
 
         default:
             return state;

@@ -37,9 +37,9 @@ const PropertiesContainer = ({ properties, listPerPage, propertiesPage, properti
         return Math.ceil(properties.length / propertiesPerPage);
     };
 
-    const changePage = (id) => {
-        dispatch(actions.setPropertiesPage(id))
-    };
+    const changePage = (id) => dispatch(actions.setPropertiesPage(id));
+
+    const changePerPageCount = (value) => dispatch(actions.setPropertiesPerPage(value));
 
     return (
         <div className="Properties">
@@ -50,8 +50,10 @@ const PropertiesContainer = ({ properties, listPerPage, propertiesPage, properti
             />
             <Pagination
                 pageCount={getPageCount()}
+                perPage={propertiesPerPage}
                 currentPage={propertiesPage}
                 onChangePage={changePage}
+                onChangePerPage={changePerPageCount}
             />
             <AddProperty
                 show={showAddPropertyModal}
