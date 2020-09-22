@@ -80,3 +80,32 @@ input.error-input, textarea.error-input, select.error-input {
   content: ' *';
   color: $color-red;
 }
+
+.pagination {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    opacity: .5;
+    width: 25px;
+    height: 25px;
+    border: 1px solid $color-orange;
+    border-radius: 7px;
+
+    &-active {
+      box-shadow: $main-shadow;
+      opacity: 1;
+    }
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+}

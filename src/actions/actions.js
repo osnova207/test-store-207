@@ -5,3 +5,7 @@ export const setLogOut = () => ({type: 'SET_LOG_OUT'});
 export const updateProducts = (payload) => ({type: 'UPDATE_PRODUCTS', payload});
 
 export const updateProperties = (payload) => ({type: 'UPDATE_PROPERTIES', payload});
+
+export const setProductsPage = (payload) => ({type: 'SET_PRODUCTS_PAGE', payload});
+
+export const setPropertiesPage = (payload) => ({type: 'SET_PROPERTIES_PAGE', payload});

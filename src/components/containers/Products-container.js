@@ -3,9 +3,12 @@ import {connect} from "react-redux";
 import {toast} from "react-toastify";
 import Database from "../../database/Database";
 import ProductList from "../views/Products-list";
+import Pagination from "../views/Pagination";
 import AddProduct from "../views/Add-product";
+import * as actions from "../../actions/actions";
+import {getPageProductsList} from "../../selectors/selectors";
 
-const ProductsContainer = ({ products, properties }) => {
+const ProductsContainer = ({ products, listPerPage, properties, productsPage, productsPerPage, dispatch}) => {
 
     const database = new Database();
     const [changeProductId, setChangeProductId] = useState(0);
@@ -35,13 +38,26 @@ const ProductsContainer = ({ products, properties }) => {
             .then(() => toast.success('Товар успешно удален'));
     };
 
+    const getPageCount = () => {
+        return Math.ceil(products.length / productsPerPage);
+    };
+
+    const changePage = (id) => {
+        dispatch(actions.setProductsPage(id))
+    };
+
     return (
         <div className="Products">
             <ProductList
-                list={products}
+                list={listPerPage}
                 onAdd={toggleAddProductModal}
                 onEdit={onEditProduct}
                 onDelete={deleteProduct}
+            />
+            <Pagination
+                pageCount={getPageCount()}
+                currentPage={productsPage}
+                onChangePage={changePage}
             />
             <AddProduct
                 show={showAddProductModal}
@@ -56,11 +72,20 @@ const ProductsContainer = ({ products, properties }) => {
 };
 
 const mapStateToProps = (state) => {
-    const { products, properties } = state;
+    const { products, properties, productsPage, productsPerPage} = state;
     return {
         products,
         properties,
+        productsPage,
+        productsPerPage,
+        listPerPage: getPageProductsList(state),
     }
 };
 
-export default connect(mapStateToProps)(ProductsContainer);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);

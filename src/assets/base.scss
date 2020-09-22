@@ -29,14 +29,6 @@
   overflow-y: auto;
 }
 
-th {
-  .material-icons {
-    font-size: 16px;
-    position: absolute;
-    left: -20px;
-  }
-}
-
 @keyframes swing {
   15% {
     -webkit-transform: translateX(9px);

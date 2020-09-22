@@ -3,9 +3,12 @@ import {connect} from "react-redux";
 import Database from "../../database/Database";
 import {toast} from 'react-toastify';
 import PropertiesList from "../views/Properties-list";
+import Pagination from "../views/Pagination";
 import AddProperty from "../views/Add-property";
+import {getPagePropertiesList} from "../../selectors/selectors";
+import * as actions from "../../actions/actions";
 
-const PropertiesContainer = ({ properties }) => {
+const PropertiesContainer = ({ properties, listPerPage, propertiesPage, propertiesPerPage, dispatch}) => {
 
     const database = new Database();
     const [showAddPropertyModal, setShowAddPropertyModal] = useState(false);
@@ -30,12 +33,25 @@ const PropertiesContainer = ({ properties }) => {
             .then(() => toast.success('Свойство успешно удалено'));
     };
 
+    const getPageCount = () => {
+        return Math.ceil(properties.length / propertiesPerPage);
+    };
+
+    const changePage = (id) => {
+        dispatch(actions.setPropertiesPage(id))
+    };
+
     return (
         <div className="Properties">
             <PropertiesList
-                list={properties}
+                list={listPerPage}
                 onDelete={deleteProperty}
                 addProperty={toggleAddPropertyModal}
+            />
+            <Pagination
+                pageCount={getPageCount()}
+                currentPage={propertiesPage}
+                onChangePage={changePage}
             />
             <AddProperty
                 show={showAddPropertyModal}
@@ -47,13 +63,20 @@ const PropertiesContainer = ({ properties }) => {
 };
 
 const mapStateToProps = (state) => {
-
-    const { properties } = state;
-
+    const { properties, propertiesPage, propertiesPerPage } = state;
     return {
-        properties
+        properties,
+        propertiesPage,
+        propertiesPerPage,
+        listPerPage: getPagePropertiesList(state),
     }
 };
 
-export default connect(mapStateToProps)(PropertiesContainer);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PropertiesContainer);
 

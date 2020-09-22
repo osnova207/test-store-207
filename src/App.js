@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ProductCard from "./components/Product-card";
-import MainPage from "./pages/MainPage";
+import MainPage from "./components/MainPage";
 import Header from "./components/Header";
 import {connect} from "react-redux";
 import Database from "./database/Database";
