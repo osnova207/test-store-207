@@ -1,4 +1,14 @@
 .Registration {
+  width: 400px;
+  box-shadow: $main-shadow;
+  border-radius: $main-border-radius;
+  background: $main-background;
+  padding: $main-padding;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   &__title {
     font-size: 30px;
     text-align: center;
@@ -20,14 +30,31 @@
     font-size: 14px;
   }
 
+  .hide {
+    opacity: 0;
+  }
+
+  .password-show-icon {
+    position: absolute;
+    right: 25px;
+    transform: translateY(-27px);
+
+    i {
+      color: $main-background;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      i {
+        color: black;
+      }
+    }
+  }
+
   &__registration, &__back {
     display: flex;
     justify-content: center;
-    transition: 300ms;
-
-    &:hover {
-      text-shadow: $main-shadow-text
-    }
   }
 
   &__submit {

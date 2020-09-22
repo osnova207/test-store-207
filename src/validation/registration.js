@@ -1,15 +1,14 @@
 import * as Yup from "yup";
 
 export const validationSchema = {
-    login: Yup.string()
-        .min(3, 'Логин слишком короткий')
+    email: Yup.string()
+        .email('Неверно введен адрес электронной почты')
         .required('Необходимо заполнить'),
     password: Yup.string()
-        .min(3, 'Пароль слишком короткий')
+        .min(8, 'Минимум 8 символов')
         .required('Необходимо заполнить'),
-    email: Yup.string()
-        .min(3, 'E-mail слишком короткий')
+    confirmPassword: Yup.string()
+        .oneOf([Yup.ref('password')], 'Пароли не совпадают')
         .required('Необходимо заполнить')
-        .email('Неверно введен адрес электронной почты'),
 };
 
