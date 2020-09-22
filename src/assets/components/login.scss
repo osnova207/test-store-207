@@ -1,10 +1,13 @@
-.Login-wrapper {
-  width: 100%;
-  height: 100%;
-}
-
 .Login {
-  width: 100%;
+  width: 400px;
+  box-shadow: $main-shadow;
+  border-radius: $main-border-radius;
+  background: $main-background;
+  padding: $main-padding;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   &__title {
     font-size: 30px;
@@ -29,7 +32,7 @@
 
   .password-show-icon {
     position: absolute;
-    right: $main-padding + 5px;
+    right: 25px;
     transform: translateY(-27px);
 
     i {
@@ -48,11 +51,6 @@
   &__registration {
     display: flex;
     justify-content: center;
-    transition: 300ms;
-
-    &:hover {
-      text-shadow: $main-shadow-text
-    }
   }
 
   &__submit {
