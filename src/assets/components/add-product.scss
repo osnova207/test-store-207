@@ -1,155 +1,130 @@
 .AddProduct {
-  width: 100%;
-  box-shadow: $main-shadow;
-  border-radius: $main-border-radius;
-  margin: 0 auto;
-  padding: 20px 20px 50px;
-  background: $main-background;
+  .modal-dialog {
+    max-width: unset;
+    width: 750px;
+  }
 
-  &__buttons {
-    display: flex;
-    margin: 5px 5px 30px 0;
-    justify-content: flex-end;
+  .modal-content {
+    background: $main-background-modal;
+    border-radius: $main-border-radius;
+    box-shadow: $main-shadow;
+  }
 
-    &__button {
-      &:first-child {
-        margin-right: 10px;
-        background-color: gray;
-      }
+  .modal-header {
+    border: none;
+    padding-bottom: 0;
+  }
 
-      &:hover {
-        box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-        transition: 300ms;
-        cursor: pointer;
-      }
-    }
+  .modal-body {
+    padding-top: 0;
   }
 
   &__title {
+    text-shadow: $main-shadow-text;
     background-color: rgba(220, 220, 220, .05);
     border-top: 1px solid rgba(220, 220, 220, .15);
     border-bottom: 1px solid rgba(220, 220, 220, .15);
     width: 100%;
     height: 40px;
-    padding-left: 50px;
-    font-weight: 500;
     line-height: 40px;
+    padding-left: 20px;
+    font-weight: 500;
   }
 
-  .sub-title {
-    margin-top: 40px;
-    display: flex;
-    align-items: center;
+  &__cancel {
+    background: gray;
   }
 
   &__form {
-    padding-left: 40px;
+    padding: 0 40px;
     position: relative;
+  }
 
-    .textarea {
-      height: 100px;
+  &__label {
+    display: block;
+    margin: 25px 0 5px;
+  }
+
+  &__input {
+    display: block;
+    height: 30px;
+    width: 300px;
+    padding: 5px 10px;
+    border-radius: 7px;
+    font-size: 14px;
+  }
+
+  .textarea {
+    height: 100px;
+    min-height: 30px;
+  }
+
+  .sub-title {
+    display: flex;
+    align-items: center;
+    margin: 40px -40px 0;
+    width: calc(100% + 80px);
+  }
+
+  &__custom-properties-block {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  &__left-col {
+    margin-right: 30px;
+  }
+
+  .select-value input {
+    margin-bottom: 20px;
+  }
+
+  .select-value .error-hint {
+    transform: translateY(-20px);
+  }
+
+  &__add-property, &__delete-property, &__delete-value, &__add-value {
+    display: inline-flex;
+    justify-content: center;
+    line-height: 26px;
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    background: none;
+    border: 2px solid $color-orange;
+    margin-left: 30px;
+    font-weight: 500;
+    transition: 300ms;
+
+    &:hover {
+      box-shadow: $main-shadow-hover;
+      cursor: pointer;
+      text-shadow: $main-shadow-text;
     }
-
-    &__block {
-      position: relative;
-      display: flex;
-      flex-flow: row nowrap;
-
-      &_left {
-        margin-right: 30px;
-      }
-    }
-
-    &__label {
-      display: block;
-      margin: 25px 0 5px;
-    }
-
-    &__input {
-      display: block;
-      width: 300px;
-      height: 30px;
-      border-radius: 7px;
-      padding: 5px 10px;
-      font-size: 14px;
-      resize: none;
-    }
-
-    &__form-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: none;
-      border: 2px solid $color-orange;
-      font-size: 16px;
-      margin-left: 30px;
-      transition: 300ms;
-
-      &:hover {
-        box-shadow: $main-shadow-hover;
-        cursor: pointer;
-        text-shadow: $main-shadow-text;
-      }
-    }
-
-    .delete {
-      border: 1px solid $color-orange;
-      font-weight: normal;
-      width: 25px;
-      height: 25px;
-      font-size: 14px;
-      position: absolute;
-      margin: 0;
-      top: 55px;
-      left: -35px;
-    }
-
-    .select-values-block {
-      .AddProduct__form__form-button {
-        margin: 0;
-      }
-
-      .select-value {
-        position: relative;
-        margin-bottom: 25px;
-
-        &:first-child {
-          margin-top: 50px;
-        }
-
-        .delete {
-          right: -35px;
-          top: 3px;
-          left: unset;
-          margin: 0;
-        }
-      }
+    &:focus {
+      outline: none;
     }
   }
-}
 
-@media screen and (max-width: 576px) {
-  .AddProduct {
-    &__form {
-      padding-left: 0;
-
-      &__input:last-child {
-        width: 100%;
-      }
-    }
-
-    &__buttons {
-      justify-content: center;
-      margin-right: 0;
-    }
+  &__delete-property {
+    position: absolute;
+    left: -40px;
+    margin: 0;
+    transform: translateY(-31px);
   }
-}
 
-@media screen and (max-width: 390px) {
-  .AddProduct__form__input {
-    width: 100%;
+  &__delete-value {
+    position: absolute;
+    right: -35px;
+    transform: translateY(-51px);
+  }
+
+  &__add-value {
+    margin: 0;
+  }
+
+  &__submit {
+    margin: 30px auto 10px;
   }
 }
