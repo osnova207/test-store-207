@@ -1,9 +1,3 @@
-import {store} from "react-notifications-component";
-
-export const showNotification = (notification) => {
-    store.addNotification(notification);
-};
-
 export const formErrorCheck = (errors, touched, formName) => {
     return !!(errors[formName] && touched[formName]);
 };
@@ -30,21 +24,4 @@ export const fieldArraySelectFormErrorCheck = (errors, touched, formName, index,
         typeof touched.customProperties[index][formName] === 'object' &&
         typeof touched.customProperties[index][formName][idx] === 'boolean'
     )
-};
-
-export const formatDate = (date) => {
-    let dd = date.getDate();
-    if (dd < 10) dd = '0' + dd;
-
-    let mm = date.getMonth() + 1;
-    if (mm < 10) mm = '0' + mm;
-
-    let yyyy = date.getFullYear();
-
-    return dd + '.' + mm + '.' + yyyy;
-};
-
-export const uniqueId = (notification) => {
-    const id = Math.random()*1000;
-    return {...notification, id}
 };
