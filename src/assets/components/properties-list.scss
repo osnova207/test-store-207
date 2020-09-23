@@ -6,9 +6,14 @@
   margin: 0 auto;
   padding: $main-padding;
   position: relative;
+  overflow: hidden;
 }
 
 .PropertiesList {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+
   &__header &__cell {
     opacity: 0.5;
     transition: 300ms;
@@ -20,6 +25,11 @@
     display: flex;
     flex-direction: column;
     font-size: 12px;
+    overflow: hidden;
+  }
+
+  &__body {
+    overflow-y: auto;
   }
 
   &__row {

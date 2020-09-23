@@ -8,6 +8,17 @@
   }
 }
 
+*::-webkit-scrollbar {
+  width: 5px;
+  background-color: rgba(0, 0, 0, .1);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $color-orange;
+  border-radius: 5px;
+}
+
 .App {
   position: fixed;
   top: 0;
@@ -26,7 +37,9 @@
   max-width: 1180px;
   margin: 0 auto;
   padding: 10px;
-  overflow-y: auto;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 .pagination {
@@ -144,6 +157,19 @@ div.sortable.activeSort {
   flex-flow: row nowrap;
   justify-content: space-between;
   margin: 30px 20px;
+}
+
+.PageNotFount {
+  width: 100%;
+  flex-grow: 1;
+  box-shadow: $main-shadow;
+  border-radius: $main-border-radius;
+  background: $main-background;
+  margin: 0 auto;
+  padding: $main-padding;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes swing {
