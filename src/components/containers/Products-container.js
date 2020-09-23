@@ -9,7 +9,7 @@ import * as actions from "../../actions/actions";
 import {getPageProductsList} from "../../selectors/selectors";
 
 const ProductsContainer = (props) => {
-    const { products, listPerPage, properties, productsPage, productsPerPage, sortType, sortDirection, dispatch } = props;
+    const { products, listPerPage, properties, productsPage, productsPerPage, sortType, sortDirection, productsSearchKey, dispatch } = props;
     const database = new Database();
     const [changeProductId, setChangeProductId] = useState(0);
     const [showAddProductModal, setShowAddProductModal] = useState(false);
@@ -54,6 +54,8 @@ const ProductsContainer = (props) => {
         }
     };
 
+    const onSearch = (key) => dispatch(actions.setProductsSearchKey(key));
+
     return (
         <div className="Products">
             <ProductList
@@ -64,6 +66,8 @@ const ProductsContainer = (props) => {
                 onSetSort={setSort}
                 sortType={sortType}
                 sortDirection={sortDirection}
+                onSearch={onSearch}
+                searchKey={productsSearchKey}
             />
             <Pagination
                 pageCount={getPageCount()}
@@ -85,7 +89,7 @@ const ProductsContainer = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    const { products, properties, productsPage, productsPerPage, productsSortType, productsSortDirectionUp} = state;
+    const { products, properties, productsPage, productsPerPage, productsSortType, productsSortDirectionUp, productsSearchKey } = state;
     return {
         products,
         properties,
@@ -93,7 +97,8 @@ const mapStateToProps = (state) => {
         productsPerPage,
         listPerPage: getPageProductsList(state),
         sortType: productsSortType,
-        sortDirection: productsSortDirectionUp
+        sortDirection: productsSortDirectionUp,
+        productsSearchKey
     }
 };
 

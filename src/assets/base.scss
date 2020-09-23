@@ -139,6 +139,13 @@ div.sortable.activeSort {
   transform: translateX(-25px) rotate(180deg);
 }
 
+.content-top-panel {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin: 30px 20px;
+}
+
 @keyframes swing {
   15% {
     -webkit-transform: translateX(9px);

@@ -1,0 +1,57 @@
+.Search-panel {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-grow: 1;
+  align-items: center;
+  margin-right: 30px;
+  position: relative;
+
+  &__search-icon {
+    width: 30px;
+    height: 30px;
+    border: 1px solid $color-orange;
+    border-radius: 7px;
+    margin: 0 10px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: .5;
+    transition: 300ms;
+
+    &:hover {
+      opacity: 1;
+      box-shadow: $main-shadow;
+      cursor: pointer;
+    }
+
+    &-active {
+      opacity: 1;
+      box-shadow: $main-shadow;
+    }
+  }
+
+  &__delete-icon {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+
+    i {
+      color: $color-orange;
+      transition: 300ms;
+
+      &:hover {
+        transform: scale(1.2);
+        cursor: pointer;
+      }
+    }
+
+  }
+
+  &__input {
+    flex-grow: 1;
+    height: 30px;
+    padding-left: 15px;
+  }
+}

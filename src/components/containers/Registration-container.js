@@ -6,6 +6,7 @@ import {toast} from "react-toastify";
 const RegistrationContainer = ({ history }) => {
 
     const onRegistration = (values) => {
+        console.log(values);
         firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
             .then(() => {
                 toast.success(`E-mail ${values.email} успешно зарегистрирован`);

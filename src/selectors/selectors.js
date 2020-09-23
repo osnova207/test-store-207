@@ -10,9 +10,18 @@ const getProductsSortType = state => state.productsSortType;
 const getProductsSortDirectionUp = state => state.productsSortDirectionUp;
 const getPropertiesSortType = state => state.propertiesSortType;
 const getPropertiesSortDirectionUp = state => state.propertiesSortDirectionUp;
+const getProductsSearchKey = state => state.productsSearchKey;
+
+const getSearchProducts = createSelector(
+    [getProducts, getProductsSearchKey],
+    (products, key) => {
+        if (key === '') return products;
+        return products.filter(product => product.name.indexOf(key) > -1 || product.price.indexOf(key) > -1)
+    }
+);
 
 const getSortedProducts = createSelector(
-    [getProducts, getProductsSortType, getProductsSortDirectionUp],
+    [getSearchProducts, getProductsSortType, getProductsSortDirectionUp],
     (products, type, direction) => {
         if (!type) return products;
         if (type === "price") {

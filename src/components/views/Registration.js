@@ -10,6 +10,7 @@ import {Link} from "react-router-dom";
 const Registration = ({ onRegistration }) => {
 
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     return (
         <div className='Registration'>
@@ -46,17 +47,19 @@ const Registration = ({ onRegistration }) => {
                         {formErrorCheck(errors, touched, 'password') ? (
                             <div className='error-hint'>{errors.password}</div>) : null}
 
-                        <div className={cn({'hide': showPassword})}>
-                            <label htmlFor="confirmPassword"
-                                   className='Registration__label required'>Подтвердите пароль:</label>
-                            <Field
-                                id='confirmPassword'
-                                name='confirmPassword'
-                                type={showPassword ? 'text' : 'password'}
-                                className={cn('Registration__input', {'error-input': formErrorCheck(errors, touched, 'confirmPassword')})}/>
-                            {formErrorCheck(errors, touched, 'confirmPassword') ? (
-                                <div className='error-hint'>{errors.confirmPassword}</div>) : null}
+                        <label htmlFor="confirmPassword"
+                               className='Registration__label required'>Подтвердите пароль:</label>
+                        <Field
+                            id='confirmPassword'
+                            name='confirmPassword'
+                            type={showConfirmPassword ? 'text' : 'password'}
+                            className={cn('Registration__input', {'error-input': formErrorCheck(errors, touched, 'confirmPassword')})}/>
+                        <div className='password-show-icon' onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                            {showConfirmPassword && values.confirmPassword && <i className='material-icons'>visibility</i>}
+                            {!showConfirmPassword && values.confirmPassword && <i className='material-icons'>visibility_off</i>}
                         </div>
+                        {formErrorCheck(errors, touched, 'confirmPassword') ? (
+                            <div className='error-hint'>{errors.confirmPassword}</div>) : null}
 
                         <button
                             disabled={formErrorCheck(errors, touched, 'email') ||

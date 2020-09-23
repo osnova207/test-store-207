@@ -1,8 +1,9 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import * as cn from "classnames";
+import SearchPanel from "./Search-panel";
 
-const ProductsList = ({ list, onAdd, onEdit, onDelete, onSetSort, sortType, sortDirection }) => {
+const ProductsList = ({ list, onAdd, onEdit, onDelete, onSetSort, sortType, sortDirection, onSearch, searchKey }) => {
 
     const renderTable = () => (
         <div className='ProductsList__table'>
@@ -72,7 +73,10 @@ const ProductsList = ({ list, onAdd, onEdit, onDelete, onSetSort, sortType, sort
 
     return (
         <div className='ProductsList'>
-            <div className='ProductsList__add-button button' onClick={() => onAdd()}>Добавить товар</div>
+            <div className='PropertiesList__top-panel content-top-panel'>
+                <SearchPanel onSearch={onSearch} value={searchKey}/>
+                <div className='ProductsList__add-button button' onClick={() => onAdd()}>Добавить товар</div>
+            </div>
             {list.length ? renderTable() : renderEmptyList()}
         </div>
     )

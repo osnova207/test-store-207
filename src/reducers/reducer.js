@@ -11,6 +11,7 @@ const initialState = {
     productsSortDirectionUp: true,
     propertiesSortType: "",
     propertiesSortDirectionUp: true,
+    productsSearchKey: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -54,6 +55,9 @@ const reducer = (state = initialState, action) => {
 
         case "SET_PROPERTIES_SORT_DIRECTION_UP":
             return {...state, propertiesSortDirectionUp: !state.propertiesSortDirectionUp };
+
+        case "SET_PRODUCTS_SEARCH_KEY":
+            return {...state, productsSearchKey: action.payload };
 
         default:
             return state;
