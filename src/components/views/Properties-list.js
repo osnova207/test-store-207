@@ -13,14 +13,14 @@ const PropertiesList = ({ list, onDelete, addProperty, onSetSort, sortType, sort
                         {'activeSort': sortType === "name"},
                         {'sort-down': sortDirection})}
                          onClick={() => onSetSort("name")}>
-                        {sortType === "name" && <img src={require('../../assets/icons/sort.svg')} alt="sort-icon" className="sort-icon"/> }
+                        {sortType === "name" && <div className="sort-icon"/>}
                         Название
                     </div>
                     <div className={cn("PropertiesList__cell PropertiesList__cell-type sortable",
                         {'activeSort': sortType === "type"},
                         {'sort-down': sortDirection})}
                          onClick={() => onSetSort("type")}>
-                        {sortType === "type" && <img src={require('../../assets/icons/sort.svg')} alt="sort-icon" className="sort-icon"/> }
+                        {sortType === "type" && <div className="sort-icon"/>}
                         Тип
                     </div>
                     <div className="PropertiesList__cell PropertiesList__cell-control">

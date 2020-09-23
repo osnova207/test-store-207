@@ -13,21 +13,21 @@ const ProductsList = ({ list, onAdd, onEdit, onDelete, onSetSort, sortType, sort
                         {'activeSort': sortType === "name"},
                         {'sort-down': sortDirection})}
                         onClick={() => onSetSort("name")}>
-                        {sortType === "name" && <img src={require('../../assets/icons/sort.svg')} alt="sort-icon" className="sort-icon"/> }
+                        {sortType === "name" && <div className="sort-icon"/>}
                         Перечень товаров
                     </div>
                     <div className={cn("ProductsList__cell ProductsList__cell-price sortable",
                         {'activeSort': sortType === "price"},
                         {'sort-down': sortDirection})}
                          onClick={() => onSetSort("price")}>
-                        {sortType === "price" && <img src={require('../../assets/icons/sort.svg')} alt="sort-icon" className="sort-icon"/> }
+                        {sortType === "price" && <div className="sort-icon"/>}
                         Стоимость
                     </div>
                     <div className={cn("ProductsList__cell ProductsList__cell-date sortable",
                         {'activeSort': sortType === "date"},
                         {'sort-down': sortDirection})}
                          onClick={() => onSetSort("date")}>
-                        {sortType === "date" && <img src={require('../../assets/icons/sort.svg')} alt="sort-icon" className="sort-icon"/> }
+                        {sortType === "date" && <div className="sort-icon"/>}
                         Дата изменения
                     </div>
                     <div className="ProductsList__cell ProductsList__cell-control">

@@ -139,17 +139,15 @@ div.sortable.activeSort {
 
 .sort-icon {
   position: absolute;
-  transform: translateX(-25px);
-  transition: 300ms;
-  width: 17px;
-  height: 17px;
-  border: 1px solid $color-orange;
-  border-radius: 3px;
-  box-shadow: $main-shadow;
+  transform: translateX(-20px);
+  transition: 500ms;
+  width: 16px;
+  height: 16px;
+  background: url("./icons/sort.svg") no-repeat;
 }
 
 .sort-down .sort-icon {
-  transform: translateX(-25px) rotate(180deg);
+  transform: translateX(-20px) rotate(540deg);
 }
 
 .content-top-panel {
