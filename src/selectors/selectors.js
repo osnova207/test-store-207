@@ -8,6 +8,8 @@ const getPropertiesPerPage = state => state.propertiesPerPage;
 const getProperties = state => state.properties;
 const getProductsSortType = state => state.productsSortType;
 const getProductsSortDirectionUp = state => state.productsSortDirectionUp;
+const getPropertiesSortType = state => state.propertiesSortType;
+const getPropertiesSortDirectionUp = state => state.propertiesSortDirectionUp;
 
 const getSortedProducts = createSelector(
     [getProducts, getProductsSortType, getProductsSortDirectionUp],
@@ -25,6 +27,16 @@ const getSortedProducts = createSelector(
     }
 );
 
+const getSortedProperties= createSelector(
+    [getProperties, getPropertiesSortType, getPropertiesSortDirectionUp],
+    (products, type, direction) => {
+        if (!type) return products;
+        return products.sort((a, b) => (
+            direction ? (a[type].toLowerCase() > b[type].toLowerCase() ? 1 : - 1) : (a[type].toLowerCase() < b[type].toLowerCase() ? 1 : - 1)
+        ))
+    }
+);
+
 export const getPageProductsList = createSelector(
     [getProductsPage, getProductsPerPage, getSortedProducts, getProductsSortType, getProductsSortDirectionUp],
     (page, perPage, products) => {
@@ -33,9 +45,7 @@ export const getPageProductsList = createSelector(
 );
 
 export const getPagePropertiesList = createSelector(
-    getPropertiesPage,
-    getPropertiesPerPage,
-    getProperties,
+    [getPropertiesPage, getPropertiesPerPage, getSortedProperties, getPropertiesSortType, getPropertiesSortDirectionUp],
     (page, perPage, properties) => {
         return properties.filter((property, idx) => idx >= (page - 1) * perPage && idx < page * perPage)
     }

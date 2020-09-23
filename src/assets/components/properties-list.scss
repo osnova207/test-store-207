@@ -13,8 +13,9 @@
     margin: 30px 0 30px auto;
   }
 
-  &__header {
+  &__header &__cell {
     opacity: 0.5;
+    transition: 300ms;
   }
 
   &__table {

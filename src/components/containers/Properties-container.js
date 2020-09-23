@@ -7,9 +7,14 @@ import Pagination from "../views/Pagination";
 import AddProperty from "../views/Add-property";
 import {getPagePropertiesList} from "../../selectors/selectors";
 import * as actions from "../../actions/actions";
+import {setProductsSortDirectionUp} from "../../actions/actions";
+import {setProductsSortType} from "../../actions/actions";
+import {setPropertiesSortType} from "../../actions/actions";
+import {setPropertiesSortDirectionUp} from "../../actions/actions";
 
-const PropertiesContainer = ({ properties, listPerPage, propertiesPage, propertiesPerPage, dispatch}) => {
+const PropertiesContainer = (props) => {
 
+    const { properties, listPerPage, propertiesPage, propertiesPerPage, sortType, sortDirection, dispatch} = props;
     const database = new Database();
     const [showAddPropertyModal, setShowAddPropertyModal] = useState(false);
     const toggleAddPropertyModal = () => setShowAddPropertyModal(!showAddPropertyModal);
@@ -41,12 +46,23 @@ const PropertiesContainer = ({ properties, listPerPage, propertiesPage, properti
 
     const changePerPageCount = (value) => dispatch(actions.setPropertiesPerPage(value));
 
+    const setSort = (key) => {
+        if (sortType === key) {
+            dispatch(setPropertiesSortDirectionUp())
+        } else {
+            dispatch(setPropertiesSortType(key))
+        }
+    };
+
     return (
         <div className="Properties">
             <PropertiesList
                 list={listPerPage}
                 onDelete={deleteProperty}
                 addProperty={toggleAddPropertyModal}
+                onSetSort={setSort}
+                sortType={sortType}
+                sortDirection={sortDirection}
             />
             <Pagination
                 pageCount={getPageCount()}
@@ -65,12 +81,14 @@ const PropertiesContainer = ({ properties, listPerPage, propertiesPage, properti
 };
 
 const mapStateToProps = (state) => {
-    const { properties, propertiesPage, propertiesPerPage } = state;
+    const { properties, propertiesPage, propertiesPerPage, propertiesSortType, propertiesSortDirectionUp } = state;
     return {
         properties,
         propertiesPage,
         propertiesPerPage,
         listPerPage: getPagePropertiesList(state),
+        sortType: propertiesSortType,
+        sortDirection: propertiesSortDirectionUp
     }
 };
 

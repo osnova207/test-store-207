@@ -7,8 +7,10 @@ const initialState = {
     productsPerPage: 10,
     propertiesPage: 1,
     propertiesPerPage: 10,
-    productsSortType: "name",
+    productsSortType: "",
     productsSortDirectionUp: true,
+    propertiesSortType: "",
+    propertiesSortDirectionUp: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -46,6 +48,12 @@ const reducer = (state = initialState, action) => {
 
         case "SET_PRODUCTS_SORT_DIRECTION_UP":
             return {...state, productsSortDirectionUp: !state.productsSortDirectionUp };
+
+        case "SET_PROPERTIES_SORT_TYPE":
+            return {...state, propertiesSortType: action.payload, propertiesSortDirectionUp: true };
+
+        case "SET_PROPERTIES_SORT_DIRECTION_UP":
+            return {...state, propertiesSortDirectionUp: !state.propertiesSortDirectionUp };
 
         default:
             return state;
