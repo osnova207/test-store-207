@@ -11,12 +11,21 @@ const getProductsSortDirectionUp = state => state.productsSortDirectionUp;
 const getPropertiesSortType = state => state.propertiesSortType;
 const getPropertiesSortDirectionUp = state => state.propertiesSortDirectionUp;
 const getProductsSearchKey = state => state.productsSearchKey;
+const getPropertiesSearchKey = state => state.propertiesSearchKey;
 
-const getSearchProducts = createSelector(
+export const getSearchProducts = createSelector(
     [getProducts, getProductsSearchKey],
     (products, key) => {
-        if (key === '') return products;
+        if (!key) return products;
         return products.filter(product => product.name.indexOf(key) > -1 || product.price.indexOf(key) > -1)
+    }
+);
+
+export const getSearchProperties = createSelector(
+    [getProperties, getPropertiesSearchKey],
+    (properties, key) => {
+        if (!key) return properties;
+        return properties.filter(property => property.name.indexOf(key) > -1 || property.type.indexOf(key) > -1)
     }
 );
 
@@ -37,7 +46,7 @@ const getSortedProducts = createSelector(
 );
 
 const getSortedProperties= createSelector(
-    [getProperties, getPropertiesSortType, getPropertiesSortDirectionUp],
+    [getSearchProperties, getPropertiesSortType, getPropertiesSortDirectionUp],
     (products, type, direction) => {
         if (!type) return products;
         return products.sort((a, b) => (

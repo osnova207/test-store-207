@@ -1,8 +1,9 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 import * as cn from "classnames";
+import SearchPanel from "./Search-panel";
 
-const PropertiesList = ({ list, onDelete, addProperty, onSetSort, sortType, sortDirection }) => {
+const PropertiesList = ({ list, onDelete, addProperty, onSetSort, sortType, sortDirection, onSearch, searchKey }) => {
 
     const renderTable = () => (
         <div className='PropertiesList__table'>
@@ -59,7 +60,10 @@ const PropertiesList = ({ list, onDelete, addProperty, onSetSort, sortType, sort
 
     return (
         <div className='PropertiesList'>
-            <div className='PropertiesList__add-button button' onClick={() => addProperty()}>Добавить свойство</div>
+            <div className='PropertiesList__top-panel content-top-panel'>
+                <SearchPanel onSearch={onSearch} value={searchKey}/>
+                <div className='PropertiesList__add-button button' onClick={() => addProperty()}>Добавить свойство</div>
+            </div>
             {list.length ? renderTable() : renderEmptyList()}
         </div>
     )

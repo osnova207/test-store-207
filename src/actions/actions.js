@@ -23,3 +23,5 @@ export const setPropertiesSortType = (payload) => ({type: 'SET_PROPERTIES_SORT_T
 export const setPropertiesSortDirectionUp = () => ({type: 'SET_PROPERTIES_SORT_DIRECTION_UP'});
 
 export const setProductsSearchKey = (payload) => ({type: 'SET_PRODUCTS_SEARCH_KEY', payload});
+
+export const setPropertiesSearchKey = (payload) => ({type: 'SET_PROPERTIES_SEARCH_KEY', payload});

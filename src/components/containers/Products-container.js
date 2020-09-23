@@ -6,10 +6,22 @@ import ProductList from "../views/Products-list";
 import Pagination from "../views/Pagination";
 import AddProduct from "../views/Add-product";
 import * as actions from "../../actions/actions";
-import {getPageProductsList} from "../../selectors/selectors";
+import {getPageProductsList, getSearchProducts} from "../../selectors/selectors";
 
 const ProductsContainer = (props) => {
-    const { products, listPerPage, properties, productsPage, productsPerPage, sortType, sortDirection, productsSearchKey, dispatch } = props;
+    const {
+        products,
+        listPerPage,
+        properties,
+        productsPage,
+        productsPerPage,
+        sortType,
+        sortDirection,
+        searchKey,
+        searchProducts,
+        dispatch
+    } = props;
+
     const database = new Database();
     const [changeProductId, setChangeProductId] = useState(0);
     const [showAddProductModal, setShowAddProductModal] = useState(false);
@@ -39,7 +51,7 @@ const ProductsContainer = (props) => {
     };
 
     const getPageCount = () => {
-        return Math.ceil(products.length / productsPerPage);
+        return Math.ceil(searchProducts.length / productsPerPage);
     };
 
     const changePage = (id) => dispatch(actions.setProductsPage(id));
@@ -67,7 +79,7 @@ const ProductsContainer = (props) => {
                 sortType={sortType}
                 sortDirection={sortDirection}
                 onSearch={onSearch}
-                searchKey={productsSearchKey}
+                searchKey={searchKey}
             />
             <Pagination
                 pageCount={getPageCount()}
@@ -98,7 +110,8 @@ const mapStateToProps = (state) => {
         listPerPage: getPageProductsList(state),
         sortType: productsSortType,
         sortDirection: productsSortDirectionUp,
-        productsSearchKey
+        searchKey: productsSearchKey,
+        searchProducts: getSearchProducts(state)
     }
 };
 

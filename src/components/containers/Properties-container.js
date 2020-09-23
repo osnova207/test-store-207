@@ -5,12 +5,22 @@ import {toast} from 'react-toastify';
 import PropertiesList from "../views/Properties-list";
 import Pagination from "../views/Pagination";
 import AddProperty from "../views/Add-property";
-import {getPagePropertiesList} from "../../selectors/selectors";
+import {getPagePropertiesList, getSearchProperties} from "../../selectors/selectors";
 import * as actions from "../../actions/actions";
 
 const PropertiesContainer = (props) => {
+    const {
+        properties,
+        listPerPage,
+        propertiesPage,
+        propertiesPerPage,
+        sortType,
+        sortDirection,
+        searchKey,
+        searchProperties,
+        dispatch
+    } = props;
 
-    const { properties, listPerPage, propertiesPage, propertiesPerPage, sortType, sortDirection, dispatch} = props;
     const database = new Database();
     const [showAddPropertyModal, setShowAddPropertyModal] = useState(false);
     const toggleAddPropertyModal = () => setShowAddPropertyModal(!showAddPropertyModal);
@@ -35,7 +45,7 @@ const PropertiesContainer = (props) => {
     };
 
     const getPageCount = () => {
-        return Math.ceil(properties.length / propertiesPerPage);
+        return Math.ceil(searchProperties.length / propertiesPerPage);
     };
 
     const changePage = (id) => dispatch(actions.setPropertiesPage(id));
@@ -50,6 +60,8 @@ const PropertiesContainer = (props) => {
         }
     };
 
+    const onSearch = (key) => dispatch(actions.setPropertiesSearchKey(key));
+
     return (
         <div className="Properties">
             <PropertiesList
@@ -59,6 +71,8 @@ const PropertiesContainer = (props) => {
                 onSetSort={setSort}
                 sortType={sortType}
                 sortDirection={sortDirection}
+                onSearch={onSearch}
+                searchKey={searchKey}
             />
             <Pagination
                 pageCount={getPageCount()}
@@ -77,14 +91,16 @@ const PropertiesContainer = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    const { properties, propertiesPage, propertiesPerPage, propertiesSortType, propertiesSortDirectionUp } = state;
+    const { properties, propertiesPage, propertiesPerPage, propertiesSortType, propertiesSortDirectionUp, propertiesSearchKey } = state;
     return {
         properties,
         propertiesPage,
         propertiesPerPage,
         listPerPage: getPagePropertiesList(state),
         sortType: propertiesSortType,
-        sortDirection: propertiesSortDirectionUp
+        sortDirection: propertiesSortDirectionUp,
+        searchKey: propertiesSearchKey,
+        searchProperties: getSearchProperties(state)
     }
 };
 

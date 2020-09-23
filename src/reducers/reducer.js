@@ -7,11 +7,12 @@ const initialState = {
     productsPerPage: 10,
     propertiesPage: 1,
     propertiesPerPage: 10,
-    productsSortType: "",
+    productsSortType: '',
     productsSortDirectionUp: true,
-    propertiesSortType: "",
+    propertiesSortType: '',
     propertiesSortDirectionUp: true,
-    productsSearchKey: ''
+    productsSearchKey: '',
+    propertiesSearchKey: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -58,6 +59,9 @@ const reducer = (state = initialState, action) => {
 
         case "SET_PRODUCTS_SEARCH_KEY":
             return {...state, productsSearchKey: action.payload };
+
+        case "SET_PROPERTIES_SEARCH_KEY":
+            return {...state, propertiesSearchKey: action.payload };
 
         default:
             return state;

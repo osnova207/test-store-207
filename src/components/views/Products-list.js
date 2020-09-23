@@ -73,7 +73,7 @@ const ProductsList = ({ list, onAdd, onEdit, onDelete, onSetSort, sortType, sort
 
     return (
         <div className='ProductsList'>
-            <div className='PropertiesList__top-panel content-top-panel'>
+            <div className='ProductsList__top-panel content-top-panel'>
                 <SearchPanel onSearch={onSearch} value={searchKey}/>
                 <div className='ProductsList__add-button button' onClick={() => onAdd()}>Добавить товар</div>
             </div>
