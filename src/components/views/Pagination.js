@@ -41,25 +41,25 @@ const Pagination = ({ pageCount, perPage, currentPage, onChangePage, onChangePer
                             disabled={currentPage === pageCount}>
                         <span className="material-icons">last_page</span>
                     </button>}
-
-                    <div className="pagination__per-page">
-                        <div className="pagination__page-count-text">
-                            На странице:
-                        </div>
-                        <div className={cn("pagination__page-count", {"pagination__page-count-active": perPage === 10})}
-                             onClick={() => onChangePerPage(10)}>
-                            10
-                        </div>
-                        <div className={cn("pagination__page-count", {"pagination__page-count-active": perPage === 20})}
-                             onClick={() => onChangePerPage(20)}>
-                            20
-                        </div>
-                        <div className={cn("pagination__page-count", {"pagination__page-count-active": perPage === 50})}
-                             onClick={() => onChangePerPage(50)}>
-                            50
-                        </div>
-                    </div>
                 </React.Fragment>}
+
+            <div className="pagination__per-page">
+                <div className="pagination__page-count-text">
+                    На странице:
+                </div>
+                <div className={cn("pagination__page-count", {"pagination__page-count-active": perPage === 10})}
+                     onClick={() => onChangePerPage(10)}>
+                    10
+                </div>
+                <div className={cn("pagination__page-count", {"pagination__page-count-active": perPage === 20})}
+                     onClick={() => onChangePerPage(20)}>
+                    20
+                </div>
+                <div className={cn("pagination__page-count", {"pagination__page-count-active": perPage === 50})}
+                     onClick={() => onChangePerPage(50)}>
+                    50
+                </div>
+            </div>
         </div>
     )
 };
