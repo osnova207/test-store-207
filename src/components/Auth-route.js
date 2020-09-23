@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux';
-import { Route, Redirect } from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 
 const AuthRoute = ({component: Component, isLogged, ...rest}) => {
     return (
@@ -12,7 +12,7 @@ const AuthRoute = ({component: Component, isLogged, ...rest}) => {
 };
 
 const mapStateToProps = (state) => {
-    const { isLogged } = state.users;
+    const { isLogged } = state;
     return {
         isLogged
     }

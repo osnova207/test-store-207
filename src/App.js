@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import LoginContainer from "./components/containers/Login-container";
 import * as firebase from "firebase";
 import RegistrationContainer from "./components/containers/Registration-container";
+import AuthRoute from "./components/Auth-route";
 
 const App = ({ dispatch }) => {
 
@@ -48,11 +49,11 @@ const App = ({ dispatch }) => {
                         <Route path="/" component={MainPage} exact/>
                         <Route path="/login" component={LoginContainer} exact/>
                         <Route path="/registration" component={RegistrationContainer}/>
-                        <Route path="/products-list/" component={ProductsContainer} exact/>
-                        <Route path="/products-list/:id"
+                        <AuthRoute path="/products-list/" component={ProductsContainer} exact/>
+                        <AuthRoute path="/products-list/:id"
                                render={({match}) => <ProductCard id={match.params.id}/>}/>
-                        <Route path="/properties-list/" component={PropertiesContainer} exact/>
-                        <Route render={() => <h1>Page not found...</h1>}/>
+                        <AuthRoute path="/properties-list/" component={PropertiesContainer} exact/>
+                        <Route render={() => <div className="PageNotFount">Страница не найдена...</div>}/>
                     </Switch>
                 </Router>
             </div>
