@@ -7,8 +7,6 @@ import Pagination from "../views/Pagination";
 import AddProduct from "../views/Add-product";
 import * as actions from "../../actions/actions";
 import {getPageProductsList} from "../../selectors/selectors";
-import {setProductsSortDirectionUp} from "../../actions/actions";
-import {setProductsSortType} from "../../actions/actions";
 
 const ProductsContainer = (props) => {
     const { products, listPerPage, properties, productsPage, productsPerPage, sortType, sortDirection, dispatch } = props;
@@ -50,9 +48,9 @@ const ProductsContainer = (props) => {
 
     const setSort = (key) => {
         if (sortType === key) {
-            dispatch(setProductsSortDirectionUp())
+            dispatch(actions.setProductsSortDirectionUp())
         } else {
-            dispatch(setProductsSortType(key))
+            dispatch(actions.setProductsSortType(key))
         }
     };
 

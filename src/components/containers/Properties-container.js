@@ -7,10 +7,6 @@ import Pagination from "../views/Pagination";
 import AddProperty from "../views/Add-property";
 import {getPagePropertiesList} from "../../selectors/selectors";
 import * as actions from "../../actions/actions";
-import {setProductsSortDirectionUp} from "../../actions/actions";
-import {setProductsSortType} from "../../actions/actions";
-import {setPropertiesSortType} from "../../actions/actions";
-import {setPropertiesSortDirectionUp} from "../../actions/actions";
 
 const PropertiesContainer = (props) => {
 
@@ -48,9 +44,9 @@ const PropertiesContainer = (props) => {
 
     const setSort = (key) => {
         if (sortType === key) {
-            dispatch(setPropertiesSortDirectionUp())
+            dispatch(actions.setPropertiesSortDirectionUp())
         } else {
-            dispatch(setPropertiesSortType(key))
+            dispatch(actions.setPropertiesSortType(key))
         }
     };
 
