@@ -13,3 +13,7 @@ export const setPropertiesPage = (payload) => ({type: 'SET_PROPERTIES_PAGE', pay
 export const setProductsPerPage = (payload) => ({type: 'SET_PRODUCTS_PER_PAGE', payload});
 
 export const setPropertiesPerPage = (payload) => ({type: 'SET_PROPERTIES_PER_PAGE', payload});
+
+export const setProductsSortType = (payload) => ({type: 'SET_PRODUCTS_SORT_TYPE', payload});
+
+export const setProductsSortDirectionUp = () => ({type: 'SET_PRODUCTS_SORT_DIRECTION_UP'});

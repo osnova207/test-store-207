@@ -7,9 +7,11 @@ import Pagination from "../views/Pagination";
 import AddProduct from "../views/Add-product";
 import * as actions from "../../actions/actions";
 import {getPageProductsList} from "../../selectors/selectors";
+import {setProductsSortDirectionUp} from "../../actions/actions";
+import {setProductsSortType} from "../../actions/actions";
 
-const ProductsContainer = ({ products, listPerPage, properties, productsPage, productsPerPage, dispatch}) => {
-
+const ProductsContainer = (props) => {
+    const { products, listPerPage, properties, productsPage, productsPerPage, sortType, sortDirection, dispatch } = props;
     const database = new Database();
     const [changeProductId, setChangeProductId] = useState(0);
     const [showAddProductModal, setShowAddProductModal] = useState(false);
@@ -46,6 +48,14 @@ const ProductsContainer = ({ products, listPerPage, properties, productsPage, pr
 
     const changePerPageCount = (value) => dispatch(actions.setProductsPerPage(value));
 
+    const setSort = (key) => {
+        if (sortType === key) {
+            dispatch(setProductsSortDirectionUp())
+        } else {
+            dispatch(setProductsSortType(key))
+        }
+    };
+
     return (
         <div className="Products">
             <ProductList
@@ -53,6 +63,9 @@ const ProductsContainer = ({ products, listPerPage, properties, productsPage, pr
                 onAdd={toggleAddProductModal}
                 onEdit={onEditProduct}
                 onDelete={deleteProduct}
+                onSetSort={setSort}
+                sortType={sortType}
+                sortDirection={sortDirection}
             />
             <Pagination
                 pageCount={getPageCount()}
@@ -74,13 +87,15 @@ const ProductsContainer = ({ products, listPerPage, properties, productsPage, pr
 };
 
 const mapStateToProps = (state) => {
-    const { products, properties, productsPage, productsPerPage} = state;
+    const { products, properties, productsPage, productsPerPage, productsSortType, productsSortDirectionUp} = state;
     return {
         products,
         properties,
         productsPage,
         productsPerPage,
         listPerPage: getPageProductsList(state),
+        sortType: productsSortType,
+        sortDirection: productsSortDirectionUp
     }
 };
 

@@ -1,19 +1,32 @@
 import React from "react";
 import * as PropTypes from "prop-types";
+import * as cn from "classnames";
 
-const ProductsList = ({ list, onAdd, onEdit, onDelete }) => {
+const ProductsList = ({ list, onAdd, onEdit, onDelete, onSetSort, sortType, sortDirection }) => {
 
     const renderTable = () => (
         <div className='ProductsList__table'>
             <div className="ProductsList__header">
                 <div className="ProductsList__row">
-                    <div className="ProductsList__cell ProductsList__cell-name">
+                    <div className={cn("ProductsList__cell ProductsList__cell-name sortable",
+                        {'activeSort': sortType === "name"},
+                        {'sort-down': sortDirection})}
+                        onClick={() => onSetSort("name")}>
+                        {sortType === "name" && <img src={require('../../assets/icons/sort.svg')} alt="sort-icon" className="sort-icon"/> }
                         Перечень товаров
                     </div>
-                    <div className="ProductsList__cell ProductsList__cell-price">
+                    <div className={cn("ProductsList__cell ProductsList__cell-price sortable",
+                        {'activeSort': sortType === "price"},
+                        {'sort-down': sortDirection})}
+                         onClick={() => onSetSort("price")}>
+                        {sortType === "price" && <img src={require('../../assets/icons/sort.svg')} alt="sort-icon" className="sort-icon"/> }
                         Стоимость
                     </div>
-                    <div className="ProductsList__cell ProductsList__cell-date">
+                    <div className={cn("ProductsList__cell ProductsList__cell-date sortable",
+                        {'activeSort': sortType === "date"},
+                        {'sort-down': sortDirection})}
+                         onClick={() => onSetSort("date")}>
+                        {sortType === "date" && <img src={require('../../assets/icons/sort.svg')} alt="sort-icon" className="sort-icon"/> }
                         Дата изменения
                     </div>
                     <div className="ProductsList__cell ProductsList__cell-control">
@@ -74,6 +87,9 @@ ProductsList.propTypes = {
     onAdd: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
+    onSetSort: PropTypes.func.isRequired,
+    sortType: PropTypes.string.isRequired,
+    sortDirection: PropTypes.bool.isRequired
 };
 
 export default ProductsList;
