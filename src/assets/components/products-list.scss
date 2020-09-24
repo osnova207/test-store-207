@@ -67,6 +67,17 @@
     }
   }
 
+  &__product-link {
+    color: #ffffff;
+    transition: 300ms;
+
+    &:hover {
+      text-decoration: none;
+      color: #ffffff;
+      text-shadow: $main-shadow-text;
+    }
+  }
+
   &__delete {
     margin-left: 20px;
 

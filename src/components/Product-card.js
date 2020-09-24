@@ -1,46 +1,47 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
-const ProductCard = ({products, id}) => {
+const ProductCard = (props) => {
 
-    const product = products.find((product) => product.id === id) || {};
+    const { id } = props.match.params;
+    const product = props.products.find((product) => product.id === Number(id)) || {};
     const { name, price, description, image, date, customProperties } = product;
 
-    const renderCustomProperties = () => {
-
-        return customProperties.map((property) => {
-            return (
-                <React.Fragment key={property.name}>
-                    <div className='ProductCard__property-block__property'>{property.name}</div>
-                    {property.value.length === 1 && <div className='ProductCard__property-block__value'>{property.value[0]}</div>}
-                    {property.value.length > 1 &&
-                        <ul className="ProductCard__property-block__values">
-                            {property.value.map((item, idx) => (
-                                <li key={item + idx}>{item}</li>
-                            ))}
-                        </ul>}
-                </React.Fragment>
-            )
-        })
-    };
+    const renderCustomProperties = () => (
+        customProperties?.map((property) => (
+            <div className='ProductCard__property' key={property.name}>
+                <div className='ProductCard__label'>{property.name}</div>
+                {property.value.length === 1 && <div className='ProductCard__property-block__value'>{property.value[0]}</div>}
+                {property.value.length > 1 &&
+                <ul className="ProductCard__value values-list">
+                    {property.value.map((item, idx) => (
+                        <li key={item + idx}>{item}</li>
+                    ))}
+                </ul>}
+            </div>
+        ))
+    );
 
     return (
         <div className='ProductCard'>
-            <Link to='/products-list/' className='ProductCard__back-link'>Вернуться</Link>
-            <div className="ProductCard__content-divider"/>
+            <Link to='/products-list/' className='ProductCard__back-link button'>Вернуться</Link>
             <div className="ProductCard__title-block">
-                <div className='ProductCard__title-block__img' style={{backgroundImage: `url(${image})`}} />
-                <div className='ProductCard__title-block__title'>
+                <div className='ProductCard__img' style={{backgroundImage: `url(${image})`}} />
+                <div className='ProductCard__title'>
                     <h1>{name}</h1>
                     <p>{description}</p>
                 </div>
             </div>
-            <div className='ProductCard__property-block'>
-                <div className='ProductCard__property-block__property'>Дата добавления</div>
-                <div className='ProductCard__property-block__value'>{date}</div>
-                <div className='ProductCard__property-block__property'>Стоимость</div>
-                <div className='ProductCard__property-block__value'>{`${price} $`}</div>
+            <div className='ProductCard__properties-block'>
+                <div className='ProductCard__property'>
+                    <div className='ProductCard__label'>{date ? "Дата добавления" : ""}</div>
+                    <div className='ProductCard__value'>{date}</div>
+                </div>
+                <div className='ProductCard__property'>
+                    <div className='ProductCard__label'>{price ? "Стоимость" : ""}</div>
+                    <div className='ProductCard__value'>{price ? price + " $" : ""}</div>
+                </div>
                 {renderCustomProperties()}
             </div>
         </div>
@@ -54,4 +55,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(ProductCard);
+export default connect(mapStateToProps)(withRouter(ProductCard));

@@ -20,7 +20,11 @@ const App = ({ dispatch }) => {
     const database = new Database();
 
     firebase.auth().onAuthStateChanged(function(user) {
-        if (user) dispatch(actions.setLogIn(user.email));
+        if (user) {
+            dispatch(actions.setLogIn(user.email))
+        } else {
+            dispatch(actions.setLogOut())
+        }
     });
 
     database.products.on('value', (snapshot => {
@@ -50,9 +54,8 @@ const App = ({ dispatch }) => {
                         <Route path="/login" component={LoginContainer} exact/>
                         <Route path="/registration" component={RegistrationContainer}/>
                         <AuthRoute path="/products-list/" component={ProductsContainer} exact/>
-                        <AuthRoute path="/products-list/:id"
-                               render={({match}) => <ProductCard id={match.params.id}/>}/>
-                        <AuthRoute path="/properties-list/" component={PropertiesContainer} exact/>
+                        <AuthRoute path="/products-list/:id" component={ProductCard} />
+                        <AuthRoute path="/properties-list/" component={PropertiesContainer} exact />
                         <Route render={() => <div className="PageNotFount">Страница не найдена...</div>}/>
                     </Switch>
                 </Router>

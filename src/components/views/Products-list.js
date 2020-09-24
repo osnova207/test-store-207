@@ -2,6 +2,7 @@ import React from "react";
 import * as PropTypes from "prop-types";
 import * as cn from "classnames";
 import SearchPanel from "./Search-panel";
+import {Link} from "react-router-dom";
 
 const ProductsList = ({ list, onAdd, onEdit, onDelete, onSetSort, sortType, sortDirection, onSearch, searchKey }) => {
 
@@ -45,7 +46,9 @@ const ProductsList = ({ list, onAdd, onEdit, onDelete, onSetSort, sortType, sort
         return list.map(item => (
             <div className="ProductsList__row" key={item.id}>
                 <div className="ProductsList__cell ProductsList__cell-name">
-                    {item.name}
+                    <Link to={`/products-list/${item.id}`} className="ProductsList__product-link">
+                        {item.name}
+                    </Link>
                 </div>
                 <div className="ProductsList__cell ProductsList__cell-price">
                     {item.price + " $"}
