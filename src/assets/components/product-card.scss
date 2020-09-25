@@ -24,7 +24,7 @@
     flex-flow: row nowrap;
   }
 
-  &__img {
+  &__img-container {
     width: 350px;
     height: 250px;
     border-radius: 10px;
@@ -33,6 +33,25 @@
     background-repeat: no-repeat;
     margin-right: 20px;
     flex-shrink: 0;
+    z-index: 10;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    min-height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: ease-in-out 500ms;
+  }
+
+  .img-zoom {
+    width: 700px;
+    height: auto;
+    transition: ease 1000ms;
   }
 
   &__title {
