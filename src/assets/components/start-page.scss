@@ -17,7 +17,8 @@
 
   &__auth {
     color: #FFFFFF;
-    font-weight: 500;
+    font-weight: bold;
+    text-decoration: underline;
     transition: 300ms;
 
     &:hover {
@@ -33,4 +34,18 @@
   height: 100%;
   margin: 0 auto;
   padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .Start-page {
+    padding: 5px 5px 15px;
+  }
+
+  .Welcome {
+    padding: 5px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
 }
