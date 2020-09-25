@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import ProductCard from "./components/Product-card";
-import MainPage from "./components/MainPage";
+import StartPage from "./components/StartPage";
 import Header from "./components/Header";
 import {connect} from "react-redux";
 import Database from "./database/Database";
@@ -50,7 +50,7 @@ const App = ({ dispatch }) => {
                 <Router>
                     <Header/>
                     <Switch>
-                        <Route path="/" component={MainPage} exact/>
+                        <Route path="/" component={StartPage} exact/>
                         <Route path="/login" component={LoginContainer} exact/>
                         <Route path="/registration" component={RegistrationContainer}/>
                         <AuthRoute path="/products-list/" component={ProductsContainer} exact/>

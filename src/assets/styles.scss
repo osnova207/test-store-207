@@ -1,15 +1,15 @@
 @import 'theme';
-@import '/base';
-@import '/pages/main-page';
+@import 'base';
+@import 'components/start-page';
 @import 'components/login';
 @import 'components/registration';
-@import '/components/preloader';
-@import '/components/add-product';
-@import '/components/add-property';
-@import '/components/product-card';
-@import '/components/products-list';
-@import '/components/properties-list';
-@import '/components/header';
-@import '/components/search-panel';
+@import 'components/preloader';
+@import 'components/add-product';
+@import 'components/add-property';
+@import 'components/product-card';
+@import 'components/products-list';
+@import 'components/properties-list';
+@import 'components/header';
+@import 'components/search-panel';
 
 
