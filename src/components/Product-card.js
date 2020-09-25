@@ -31,7 +31,7 @@ const ProductCard = (props) => {
         <div className='ProductCard'>
             <Link to='/products-list/' className='ProductCard__back-link button'>Вернуться</Link>
             <div className="ProductCard__title-block">
-                <div className="ProductCard__img-container" onClick={() => setImgZoom(true)}>
+                <div className="ProductCard__img-container" onClick={() => setImgZoom(!imgZoom)}>
                     <OutsideClickHandler onOutsideClick={() => setImgZoom(false)}>
                         <img className={cn('ProductCard__img', {'img-zoom': imgZoom})} src={image} alt='product-img' />
                     </OutsideClickHandler>
