@@ -80,3 +80,17 @@ input.error-input, textarea.error-input, select.error-input {
   content: ' *';
   color: $color-red;
 }
+
+@media screen and (max-width: 768px) {
+  .button, .button-sm {
+    height: 30px;
+    width: 120px;
+    font-size: 14px;
+  }
+
+  .button-sm {
+    height: 20px;
+    width: 90px;
+    font-size: 10px;
+  }
+}

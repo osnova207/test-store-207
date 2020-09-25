@@ -7,6 +7,11 @@ const StartPage = () => (
             <h1 className="text-center">Добро пожаловать в Store 207!</h1>
             <p className="text-center">Представляю Вашему вниманию мой учебный проект административного интерфейса для магазина абстрактных товаров.</p>
             <p className="text-center">Целью этого проекта является применение полученных знаний и навыков.</p>
+            <p className="text-center">
+                Для доступа ко всем возможностям проекта необходимо&nbsp;
+                <Link to="/login" className="Start-page__auth">авторизоваться</Link>
+                .
+            </p>
             <p>В проекте реализован следующий функционал:</p>
             <ul className="Start-page__opportunities-list">
                 <li>Добавление/изменение/удаление сущностей</li>
@@ -36,11 +41,6 @@ const StartPage = () => (
                 <li>Material design icons</li>
                 <li>SCSS</li>
             </ul>
-            <p className="text-center">
-                Для доступа ко всем возможностям проекта необходимо&nbsp;
-                <Link to="/login" className="Start-page__auth">авторизоваться</Link>
-                .
-            </p>
         </div>
     </div>
 );

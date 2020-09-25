@@ -6,6 +6,8 @@
   justify-content: space-between;
   margin-bottom: 10px;
   flex-shrink: 0;
+  position: relative;
+  transition: 300ms ease;
 
   &__home {
     margin-left: 20px;
@@ -22,6 +24,7 @@
       text-shadow: $main-shadow;
       font-size: 40px;
       transition: 300ms;
+
       &:hover {
         text-shadow: $main-shadow-hover;
       }
@@ -42,6 +45,7 @@
       transition: 300ms;
       border-radius: 20px;
       color: #ffffff;
+      white-space: nowrap;
 
       i {
         transition: 300ms;
@@ -55,9 +59,11 @@
         text-shadow: $main-shadow-text;
         color: #ffffff;
         text-decoration: none;
+
         i {
           text-shadow: $main-shadow-hover;
         }
+
         cursor: pointer;
       }
     }
@@ -65,12 +71,16 @@
 
   .active {
     text-shadow: $main-shadow-text;
+
     i {
       text-shadow: $main-shadow-hover;
     }
   }
 
   &__auth {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 
     &__user {
       display: inline-flex;
@@ -83,6 +93,112 @@
       align-items: center;
       margin: auto 0;
       text-decoration: none;
+    }
+  }
+
+  &__burger-button {
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    width: 30px;
+    height: 30px;
+    margin: 0 20px 0 auto;
+
+    &_item {
+      width: 35px;
+      height: 4px;
+      background: $color-orange;
+      border-radius: 10px;
+      transition: 300ms ease;
+    }
+  }
+
+  &__burger-button.opened {
+    .Header__burger-button_item {
+      &:first-child {
+        transform: translateY(12.5px) rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        width: 0;
+        opacity: 0;
+      }
+
+      &:last-child {
+        transform: translateY(-12.5px) rotate(-45deg);
+      }
+    }
+  }
+}
+
+.Header.opened {
+  height: 100%;
+
+  .Header__auth__user {
+    display: flex;
+    margin: 10px 0 0 0;
+  }
+
+  .Header__auth {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    position: absolute;
+    margin-top: 5px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .Header__buttons {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    height: 150px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &__button {
+      margin: 0;
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .Header {
+    &__auth__user {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Header {
+    height: 40px;
+    padding-top: 5px;
+    align-items: flex-start;
+    box-shadow: $main-shadow;
+    border-radius: $main-border-radius;
+    background: $main-background;
+
+    &__home {
+      height: 40px;
+      margin-left: 0;
+
+      i {
+        font-size: 35px;
+      }
+    }
+
+    &__burger-button {
+      display: flex;
+    }
+
+    &__buttons, &__auth {
+      display: none;
     }
   }
 }
