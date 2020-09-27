@@ -46,12 +46,17 @@
         cursor: pointer;
       }
     }
-
   }
 
   &__input {
     flex-grow: 1;
     height: 30px;
     padding-left: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Search-panel {
+    margin-right: 10px;
   }
 }

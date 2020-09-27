@@ -33,6 +33,7 @@ select, option {
   background-color: $color-orange;
   font-size: 16px;
   transition: 300ms;
+  white-space: nowrap;
 
   &:hover {
     cursor: pointer;
@@ -70,8 +71,8 @@ select, option {
 
 input.error-input, textarea.error-input, select.error-input {
   border: 1.3px solid $color-red;
-  -webkit-animation: swing 0.6s ease;
-  animation: swing 0.6s ease;
+  -webkit-animation: swing 0.8s ease;
+  animation: swing 0.8s ease;
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
 }
@@ -84,7 +85,7 @@ input.error-input, textarea.error-input, select.error-input {
 @media screen and (max-width: 768px) {
   .button, .button-sm {
     height: 30px;
-    width: 120px;
+    width: 150px;
     font-size: 14px;
   }
 
