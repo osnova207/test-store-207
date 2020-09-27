@@ -22,6 +22,10 @@
     display: none;
   }
 
+  &__header {
+    padding-bottom: 10px;
+  }
+
   &__header &__cell {
     opacity: 0.5;
     transition: 300ms;
