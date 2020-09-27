@@ -119,3 +119,33 @@
     margin: 30px auto 10px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .AddProperty {
+
+    .modal-dialog {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      max-width: unset;
+      max-height: unset;
+    }
+
+    .modal-content {
+      height: 100%;
+    }
+
+    &__cancel, &__submit {
+      height: 40px;
+      width: 180px;
+    }
+
+    &__form {
+      position: absolute;
+      width: calc(100% - 30px);
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 0;
+    }
+  }
+}
