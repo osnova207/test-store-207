@@ -78,7 +78,10 @@ const ProductsList = ({ list, onAdd, onEdit, onDelete, onSetSort, sortType, sort
         <div className='ProductsList'>
             <div className='ProductsList__top-panel content-top-panel'>
                 <SearchPanel onSearch={onSearch} value={searchKey}/>
-                <div className='ProductsList__add-button button' onClick={() => onAdd()}>Добавить товар</div>
+                <div className='ProductsList__add-button button' onClick={() => onAdd()}>
+                    <span className="ProductsList__add-button-label">Добавить товар</span>
+                    <span className="ProductsList__add-button-label-sm">+</span>
+                </div>
             </div>
             {list.length ? renderTable() : renderEmptyList()}
         </div>

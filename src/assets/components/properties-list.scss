@@ -7,12 +7,20 @@
   padding: $main-padding;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
 }
 
 .PropertiesList {
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
+  overflow: hidden;
+
+  &__add-button-label-sm {
+    display: none;
+  }
 
   &__header &__cell {
     opacity: 0.5;
@@ -21,15 +29,12 @@
 
   &__table {
     width: 100%;
-    padding: 0 20px 30px;
+    padding: 0 0 0 20px;
     display: flex;
     flex-direction: column;
     font-size: 12px;
-    overflow: hidden;
-  }
-
-  &__body {
-    overflow-y: auto;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   &__row {
@@ -38,6 +43,8 @@
     justify-content: space-between;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     height: 30px;
+    margin-right: 10px;
+    min-width: 400px;
   }
 
   &__cell {
@@ -45,25 +52,54 @@
     align-items: center;
 
     &-name {
-      flex: 0 1 50%;
+      flex-grow: 1;
       white-space: nowrap;
       overflow: hidden;
+      margin-right: 10px;
+      min-width: 150px;
     }
 
     &-type {
       text-align: center;
-      flex: 0 0 90px;
+      flex: 0 0 80px;
     }
 
     &-control {
-      flex: 0 0 140px;
-      padding-left: 20px;
+      flex: 0 0 130px;
+      padding-left: 10px;
       justify-content: center;
     }
   }
 
   &__delete:hover {
     background-color: $color-red;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .Properties {
+    flex-grow: 1;
+    padding: 5px 5px 50px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .PropertiesList {
+
+    &__add-button {
+      width: 30px;
+      height: 30px;
+      padding: 0;
+    }
+
+    &__add-button-label-sm {
+      display: inline;
+    }
+
+    &__add-button-label {
+      display: none;
+    }
   }
 }
 
