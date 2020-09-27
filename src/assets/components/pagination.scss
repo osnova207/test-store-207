@@ -90,5 +90,9 @@
   .Pagination {
     width: calc(100% - 10px);
     bottom: 10px;
+
+    &__per-page {
+      display: none;
+    }
   }
 }
