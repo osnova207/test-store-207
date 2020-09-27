@@ -83,6 +83,8 @@
   &__product-link {
     color: #ffffff;
     transition: 300ms;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &:hover {
       text-decoration: none;
