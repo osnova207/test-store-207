@@ -4,10 +4,9 @@
   border-radius: $main-border-radius;
   background: $main-background;
   padding: $main-padding;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: auto auto;
+  overflow-y: auto;
+  position: relative;
 
   &__title {
     font-size: 30px;
@@ -59,5 +58,12 @@
 
   &__submit {
     margin: 40px auto 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Registration {
+    width: 100%;
+    flex-grow: 1;
   }
 }
