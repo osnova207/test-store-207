@@ -1,19 +1,19 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import ProductCard from "./components/Product-card";
-import StartPage from "./components/StartPage";
 import Header from "./components/Header";
 import {connect} from "react-redux";
 import Database from "./database/Database";
 import * as actions from "./actions/actions";
+import AuthRoute from "./components/Auth-route";
+import StartPage from "./components/StartPage";
 import ProductsContainer from "./components/containers/Products-container";
 import PropertiesContainer from "./components/containers/Properties-container";
+import ProductCardContainer from "./components/containers/Product-card-container";
+import RegistrationContainer from "./components/containers/Registration-container";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import LoginContainer from "./components/containers/Login-container";
 import * as firebase from "firebase";
-import RegistrationContainer from "./components/containers/Registration-container";
-import AuthRoute from "./components/Auth-route";
 
 const App = ({ dispatch }) => {
 
@@ -54,7 +54,7 @@ const App = ({ dispatch }) => {
                         <Route path="/login" component={LoginContainer} exact/>
                         <Route path="/registration" component={RegistrationContainer}/>
                         <AuthRoute path="/products-list/" component={ProductsContainer} exact/>
-                        <AuthRoute path="/products-list/:id" component={ProductCard} />
+                        <AuthRoute path="/products-list/:id" component={ProductCardContainer} />
                         <AuthRoute path="/properties-list/" component={PropertiesContainer} exact />
                         <Route render={() => <div className="PageNotFount">Страница не найдена...</div>}/>
                     </Switch>

@@ -1,22 +1,18 @@
-import React, {useState} from "react";
-import {connect} from "react-redux";
-import {Link, withRouter} from "react-router-dom";
-import * as cn from "classnames";
+import React from "react";
+import {Link} from "react-router-dom";
 import OutsideClickHandler from "react-outside-click-handler";
+import * as cn from "classnames";
+import * as PropTypes from "prop-types";
 
-const ProductCard = (props) => {
+const ProductCard = ({ product, imgZoom, toggleImg, closeImg }) => {
 
-    const { id } = props.match.params;
-    const product = props.products.find((product) => product.id === Number(id)) || {};
-    const { name, price, description, image, date, customProperties } = product;
-
-    const [imgZoom, setImgZoom] = useState(false);
+    const { name, price, date, image, description, customProperties } = product;
 
     const renderCustomProperties = () => (
         customProperties?.map((property) => (
             <div className='ProductCard__property' key={property.name}>
                 <div className='ProductCard__label'>{property.name}</div>
-                {property.value.length === 1 && <div className='ProductCard__property-block__value'>{property.value[0]}</div>}
+                {property.value.length === 1 && <div className='ProductCard__value'>{property.value[0]}</div>}
                 {property.value.length > 1 &&
                 <ul className="ProductCard__value values-list">
                     {property.value.map((item, idx) => (
@@ -31,9 +27,10 @@ const ProductCard = (props) => {
         <div className='ProductCard'>
             <Link to='/products-list/' className='ProductCard__back-link button'>Вернуться</Link>
             <div className="ProductCard__title-block">
-                <div className="ProductCard__img-container" onClick={() => setImgZoom(!imgZoom)}>
-                    <OutsideClickHandler onOutsideClick={() => setImgZoom(false)}>
-                        <img className={cn('ProductCard__img', {'img-zoom': imgZoom})} src={image} alt='product-img' />
+                <div className="ProductCard__img-container" onClick={toggleImg}>
+                    <OutsideClickHandler onOutsideClick={closeImg}>
+                        <img className={cn('ProductCard__img', {'img-zoom': imgZoom})} src={image}
+                             alt='product-img'/>
                     </OutsideClickHandler>
                 </div>
                 <div className='ProductCard__title'>
@@ -47,8 +44,8 @@ const ProductCard = (props) => {
                     <div className='ProductCard__value'>{date}</div>
                 </div>
                 <div className='ProductCard__property'>
-                    <div className='ProductCard__label'>{price ? "Стоимость" : ""}</div>
-                    <div className='ProductCard__value'>{price ? price + " $" : ""}</div>
+                    <div className='ProductCard__label'>{"Стоимость"}</div>
+                    <div className='ProductCard__value'>{price + " $"}</div>
                 </div>
                 {renderCustomProperties()}
             </div>
@@ -56,11 +53,16 @@ const ProductCard = (props) => {
     )
 };
 
-const mapStateToProps = (state) => {
-  const { products } = state;
-  return {
-      products
-  }
+ProductCard.defaultProps = {
+    product: {},
+    imgZoom: false,
 };
 
-export default connect(mapStateToProps)(withRouter(ProductCard));
+ProductCard.propTypes = {
+    product: PropTypes.object.isRequired,
+    imgZoom: PropTypes.bool.isRequired,
+    toggleImg: PropTypes.func.isRequired,
+    closeImg: PropTypes.func.isRequired,
+};
+
+export default ProductCard;
