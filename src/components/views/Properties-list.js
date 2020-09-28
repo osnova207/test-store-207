@@ -63,7 +63,7 @@ const PropertiesList = ({ list, onDelete, addProperty, onSetSort, sortType, sort
             <div className='PropertiesList__top-panel content-top-panel'>
                 <SearchPanel onSearch={onSearch} value={searchKey}/>
                 <div className='PropertiesList__add-button button' onClick={() => addProperty()}>
-                    <span className="PropertiesList__add-button-label">Добавить товар</span>
+                    <span className="PropertiesList__add-button-label">Добавить свойство</span>
                     <span className="PropertiesList__add-button-label-sm">+</span>
                 </div>
             </div>
